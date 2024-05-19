@@ -59,9 +59,6 @@ function addBookMarks() {
     siteURL.value.toLowerCase().startsWith("www.") ||
     siteURL.value.toLowerCase().endsWith(".com")
   ) {
-    siteURL.classList.add("is-valid");
-    siteURL.classList.remove("is-invalid");
-
     var bookMarksData = {
       bookMarkName: siteName.value,
       bookMarkURL: siteURL.value,
@@ -72,9 +69,6 @@ function addBookMarks() {
     bookMarks.push(bookMarksData);
     localStorage.setItem("bookMarksSites", JSON.stringify(bookMarks));
     display();
-  } else {
-    siteURL.classList.add("is-invalid");
-    siteURL.classList.remove("is-valid");
   }
 }
 
@@ -84,3 +78,25 @@ function deleteBookMark(i) {
   localStorage.setItem("bookMarksSites", JSON.stringify(bookMarks));
   display();
 }
+
+siteURL.onkeyup = function () {
+  if (
+    siteURL.value.toLowerCase().startsWith("www.") ||
+    siteURL.value.toLowerCase().endsWith(".com")
+  ) {
+    siteURL.classList.add("is-valid");
+    siteURL.classList.remove("is-invalid");
+  } else {
+    siteURL.classList.add("is-invalid");
+    siteURL.classList.remove("is-valid");
+  }
+};
+siteName.onkeyup = function () {
+  if (siteName.value.length > 0) {
+    siteName.classList.add("is-valid");
+    siteName.classList.remove("is-invalid");
+  } else {
+    siteName.classList.add("is-invalid");
+    siteName.classList.remove("is-valid");
+  }
+};
